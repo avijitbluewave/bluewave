@@ -278,15 +278,35 @@
           <p class="text-gray-600 mt-1">Manage your water purifier products</p>
         </div>
         
-        <button
-          on:click={handleAddProduct}
-          class="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-blue-500/30 transition-all duration-300 hover:scale-105"
-        >
-          <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-          </svg>
-          Add Product
-        </button>
+        <div class="flex space-x-4">
+          <button
+            on:click={handleAddProduct}
+            class="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-blue-500/30 transition-all duration-300 hover:scale-105"
+          >
+            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+            </svg>
+            Add Product
+          </button>
+          
+          <button
+            on:click={exportData}
+            class="px-4 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-green-500/30 transition-all duration-300 hover:scale-105"
+          >
+            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Export
+          </button>
+          
+          <label class="px-4 py-3 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 cursor-pointer">
+            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
+            </svg>
+            Import
+            <input type="file" accept=".json" on:change={importData} class="hidden" />
+          </label>
+        </div>
       </div>
     </div>
   </div>

@@ -1,6 +1,13 @@
 <script>
   import ProductCard from './ProductCard.svelte';
   import { products } from '../stores/products.js';
+  import { onMount } from 'svelte';
+  
+  // Debug logging
+  onMount(() => {
+    console.log('Products component mounted');
+    console.log('Current products from store:', $products);
+  });
   
   // Helper function to get image URL (handles both server and local images)
   function getImageUrl(imageRef) {
@@ -18,6 +25,12 @@
     }
     
     return imageRef; // Regular URL
+  }
+  
+  // Debug reactive statement
+  $: {
+    console.log('Products store updated:', $products.length, 'products');
+    console.log('Products data:', $products);
   }
   
   // Convert store products to the format expected by ProductCard

@@ -13,7 +13,7 @@ import Footer from '../components/Footer.svelte';
   <Header client:load />
   <main>
     <Hero client:load />
-    <Products client:load />
+    <Products client:only="svelte" />
     <About client:load />
     <Testimonials client:load />
     <Contact client:load />
