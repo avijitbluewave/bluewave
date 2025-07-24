@@ -107,8 +107,7 @@
           { href: '#home', label: 'HOME', code: '01' },
           { href: '#products', label: 'PRODUCTS', code: '02' },
           { href: '#about', label: 'ABOUT', code: '03' },
-          { href: '#contact', label: 'CONTACT', code: '04' },
-          { href: '/dashboard', label: 'DASHBOARD', code: '05' }
+          { href: '#contact', label: 'CONTACT', code: '04' }
         ] as item, index}
           <a href={item.href} 
              class="group relative px-6 py-3 font-mono text-sm font-bold text-white/80 hover:text-white transition-all duration-300 overflow-hidden">
@@ -208,8 +207,7 @@
               { href: '#home', label: 'HOME', code: '01', icon: '⌂' },
               { href: '#products', label: 'PRODUCTS', code: '02', icon: '◈' },
               { href: '#about', label: 'ABOUT', code: '03', icon: '◉' },
-              { href: '#contact', label: 'CONTACT', code: '04', icon: '◎' },
-              { href: '/dashboard', label: 'DASHBOARD', code: '05', icon: '◐' }
+              { href: '#contact', label: 'CONTACT', code: '04', icon: '◎' }
             ] as item}
               <a href={item.href} 
                  on:click={toggleMenu}

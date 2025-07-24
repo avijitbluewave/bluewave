@@ -1,62 +1,99 @@
 <script>
   import ProductCard from './ProductCard.svelte';
-  import { products } from '../stores/products.js';
-  import { onMount } from 'svelte';
   
-  // Debug logging
-  onMount(() => {
-    console.log('Products component mounted');
-    console.log('Current products from store:', $products);
-  });
-  
-  // Helper function to get image URL (handles both server and local images)
-  function getImageUrl(imageRef) {
-    if (!imageRef) return '';
-    
-    if (imageRef.startsWith('local:')) {
-      const imageId = imageRef.replace('local:', '');
-      try {
-        const images = JSON.parse(localStorage.getItem('bluewave-images') || '{}');
-        return images[imageId]?.data || '';
-      } catch (error) {
-        console.error('Error retrieving local image:', error);
-        return '';
-      }
+  // Static product data based on your uploaded images
+  const products = [
+    {
+      id: 1,
+      name: "BLUE WAVE 🌊 SMART",
+      image: "/product/uploads/1.webp",
+      description: "5 Years Warranty only for Electric Components. Advanced water purification with smart technology.",
+      price: "19999",
+      originalPrice: "21999",
+      rating: 5,
+      capacity: "8L",
+      flowRate: "15 Ltr",
+      technologies: [
+        { name: "RO", color: "border-yellow-400 text-yellow-700", bgColor: "bg-yellow-50" },
+        { name: "UV", color: "border-orange-400 text-orange-700", bgColor: "bg-orange-50" },
+        { name: "UF", color: "border-purple-400 text-purple-700", bgColor: "bg-purple-50" },
+        { name: "TDS", color: "border-green-400 text-green-700", bgColor: "bg-green-50" }
+      ],
+      specialFeature: "SMART TECHNOLOGY"
+    },
+    {
+      id: 2,
+      name: "BLUE WAVE 🌊 SMART",
+      image: "/product/uploads/2.webp",
+      description: "5 Years Warranty only for Electric Components. Compact design with advanced filtration.",
+      price: "19999",
+      originalPrice: "21999",
+      rating: 5,
+      capacity: "6L",
+      flowRate: "12 Ltr",
+      technologies: [
+        { name: "RO", color: "border-yellow-400 text-yellow-700", bgColor: "bg-yellow-50" },
+        { name: "UV", color: "border-orange-400 text-orange-700", bgColor: "bg-orange-50" },
+        { name: "UF", color: "border-purple-400 text-purple-700", bgColor: "bg-purple-50" },
+        { name: "ION", color: "border-blue-400 text-blue-700", bgColor: "bg-blue-50" }
+      ],
+      specialFeature: "COMPACT DESIGN"
+    },
+    {
+      id: 3,
+      name: "BLUE WAVE 🌊 PRO",
+      image: "/product/uploads/3.webp",
+      description: "5 years Warranty only for electric components. Professional grade water purification system.",
+      price: "17999",
+      originalPrice: "19999",
+      rating: 5,
+      capacity: "10L",
+      flowRate: "18 Ltr",
+      technologies: [
+        { name: "RO", color: "border-yellow-400 text-yellow-700", bgColor: "bg-yellow-50" },
+        { name: "UV", color: "border-orange-400 text-orange-700", bgColor: "bg-orange-50" },
+        { name: "PRO", color: "border-red-400 text-red-700", bgColor: "bg-red-50" },
+        { name: "TDS", color: "border-green-400 text-green-700", bgColor: "bg-green-50" }
+      ],
+      specialFeature: "PROFESSIONAL GRADE"
+    },
+    {
+      id: 4,
+      name: "BLUE WAVE 🌊 Dolphin 🐬",
+      image: "/product/uploads/4.webp",
+      description: "5 Years Warranty only for Electric Components. Dolphin series with marine-grade filtration.",
+      price: "17999",
+      originalPrice: "19999",
+      rating: 4,
+      capacity: "8L",
+      flowRate: "15 Ltr",
+      technologies: [
+        { name: "RO", color: "border-yellow-400 text-yellow-700", bgColor: "bg-yellow-50" },
+        { name: "UV", color: "border-orange-400 text-orange-700", bgColor: "bg-orange-50" },
+        { name: "DOL", color: "border-cyan-400 text-cyan-700", bgColor: "bg-cyan-50" },
+        { name: "AQA", color: "border-blue-400 text-blue-700", bgColor: "bg-blue-50" }
+      ],
+      specialFeature: "MARINE TECHNOLOGY"
+    },
+    {
+      id: 5,
+      name: "BLUE WAVE 🌊 Unik",
+      image: "/product/uploads/5.webp",
+      description: "4 Years Warranty only for Electric Components. Unique design with advanced purification.",
+      price: "17999",
+      originalPrice: "19999",
+      rating: 4,
+      capacity: "7L",
+      flowRate: "14 Ltr",
+      technologies: [
+        { name: "RO", color: "border-yellow-400 text-yellow-700", bgColor: "bg-yellow-50" },
+        { name: "UV", color: "border-orange-400 text-orange-700", bgColor: "bg-orange-50" },
+        { name: "UNK", color: "border-purple-400 text-purple-700", bgColor: "bg-purple-50" },
+        { name: "FLT", color: "border-indigo-400 text-indigo-700", bgColor: "bg-indigo-50" }
+      ],
+      specialFeature: "UNIQUE DESIGN"
     }
-    
-    return imageRef; // Regular URL
-  }
-  
-  // Debug reactive statement
-  $: {
-    console.log('Products store updated:', $products.length, 'products');
-    console.log('Products data:', $products);
-  }
-  
-  // Convert store products to the format expected by ProductCard
-  $: formattedProducts = $products.map(product => ({
-    id: product.id,
-    name: product.name,
-    image: getImageUrl(product.image),
-    description: product.description,
-    price: product.price.toString(),
-    rating: Math.round(product.rating),
-    capacity: `${product.liters}L`,
-    flowRate: `${Math.round(product.liters * 1.5)} Ltr`, // Estimated flow rate
-    technologies: product.features.slice(0, 4).map((feature, index) => {
-      const colors = [
-        { color: "border-yellow-400 text-yellow-700", bgColor: "bg-yellow-50" },
-        { color: "border-orange-400 text-orange-700", bgColor: "bg-orange-50" },
-        { color: "border-purple-400 text-purple-700", bgColor: "bg-purple-50" },
-        { color: "border-green-400 text-green-700", bgColor: "bg-green-50" }
-      ];
-      return {
-        name: feature.substring(0, 3).toUpperCase(),
-        ...colors[index % colors.length]
-      };
-    }),
-    specialFeature: product.features[0] || "PREMIUM QUALITY"
-  }));
+  ];
   
   // Keep original products as fallback
   const originalProducts = [
@@ -186,7 +223,7 @@
     
     <!-- Products Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-      {#each formattedProducts as product, index}
+      {#each products as product, index}
         <div style="animation-delay: {index * 100}ms" class="animate-fade-in-up">
           <ProductCard {product} {index} />
         </div>

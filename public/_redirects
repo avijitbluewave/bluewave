@@ -1,3 +1,0 @@
-# Cloudflare Pages redirects for Astro static site
-/dashboard /dashboard.html 200
-/dashboard/ /dashboard.html 200
