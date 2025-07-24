@@ -9,6 +9,6 @@ export default defineConfig({
       applyBaseStyles: false,
     })
   ],
-  output: 'hybrid',
+  output: 'static',
   site: 'https://blue-wave-purifiers.pages.dev'
 });

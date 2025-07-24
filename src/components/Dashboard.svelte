@@ -176,29 +176,7 @@
     uploading = true;
     
     try {
-      // Try API upload first (for hybrid/server mode)
-      try {
-        const uploadFormData = new FormData();
-        uploadFormData.append('image', file);
-
-        const response = await fetch('/api/upload-image', {
-          method: 'POST',
-          body: uploadFormData
-        });
-
-        if (response.ok) {
-          const result = await response.json();
-          if (result.success) {
-            formData.image = result.url;
-            console.log('Image uploaded to server successfully:', result.url);
-            return;
-          }
-        }
-      } catch (apiError) {
-        console.log('API upload not available, using local storage method');
-      }
-
-      // Fallback: Convert to base64 and store with better organization
+      // Convert to base64 and store with better organization
       const reader = new FileReader();
       reader.onload = (e) => {
         // Create a unique identifier for the image
@@ -221,14 +199,17 @@
           // Use the image ID as reference
           formData.image = `local:${imageId}`;
           console.log('Image stored locally with ID:', imageId);
+          uploading = false;
         } catch (storageError) {
           console.error('Error storing image locally:', storageError);
-          throw new Error('Failed to store image locally');
+          alert('Failed to store image locally');
+          uploading = false;
         }
       };
       
       reader.onerror = () => {
-        throw new Error('Failed to read file');
+        alert('Failed to read file');
+        uploading = false;
       };
       
       reader.readAsDataURL(file);
@@ -236,7 +217,6 @@
     } catch (error) {
       console.error('Error uploading file:', error);
       alert('Error uploading file: ' + error.message);
-    } finally {
       uploading = false;
     }
   }
@@ -565,9 +545,9 @@
                 />
                 <p class="text-xs text-gray-500 mt-1">
                   {#if uploading}
-                    <span class="text-blue-600">Uploading image...</span>
+                    <span class="text-blue-600">Processing image...</span>
                   {:else}
-                    Supported formats: JPG, PNG, GIF, WEBP (Max 5MB)
+                    Supported formats: JPG, PNG, GIF, WEBP (Max 5MB) - Images stored locally in browser
                   {/if}
                 </p>
               </div>
