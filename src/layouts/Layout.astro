@@ -1,0 +1,31 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="bluewave">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Blue Wave - Premium Water Purifiers for Pure, Clean Water" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-base-100">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
