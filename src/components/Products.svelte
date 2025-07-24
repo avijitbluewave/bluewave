@@ -11,8 +11,8 @@
       price: "19999",
       originalPrice: "21999",
       rating: 5,
-      capacity: "8L",
-      flowRate: "15 Ltr",
+      capacity: "10L",
+      flowRate: "18 Ltr",
       technologies: [
         { name: "RO", color: "border-yellow-400 text-yellow-700", bgColor: "bg-yellow-50" },
         { name: "UV", color: "border-orange-400 text-orange-700", bgColor: "bg-orange-50" },
@@ -29,8 +29,8 @@
       price: "19999",
       originalPrice: "21999",
       rating: 5,
-      capacity: "6L",
-      flowRate: "12 Ltr",
+      capacity: "10L",
+      flowRate: "18 Ltr",
       technologies: [
         { name: "RO", color: "border-yellow-400 text-yellow-700", bgColor: "bg-yellow-50" },
         { name: "UV", color: "border-orange-400 text-orange-700", bgColor: "bg-orange-50" },
@@ -65,8 +65,8 @@
       price: "17999",
       originalPrice: "19999",
       rating: 4,
-      capacity: "8L",
-      flowRate: "15 Ltr",
+      capacity: "10L",
+      flowRate: "18 Ltr",
       technologies: [
         { name: "RO", color: "border-yellow-400 text-yellow-700", bgColor: "bg-yellow-50" },
         { name: "UV", color: "border-orange-400 text-orange-700", bgColor: "bg-orange-50" },
@@ -83,8 +83,8 @@
       price: "17999",
       originalPrice: "19999",
       rating: 4,
-      capacity: "7L",
-      flowRate: "14 Ltr",
+      capacity: "10L",
+      flowRate: "18 Ltr",
       technologies: [
         { name: "RO", color: "border-yellow-400 text-yellow-700", bgColor: "bg-yellow-50" },
         { name: "UV", color: "border-orange-400 text-orange-700", bgColor: "bg-orange-50" },
